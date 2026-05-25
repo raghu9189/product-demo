@@ -32,9 +32,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 
-
 var app = builder.Build();
-
 
 // Enable Swagger
 app.UseSwagger();
@@ -49,14 +47,5 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapControllers();
-
-app.MapGet("/hello", () =>
-{
-    var forecast = Enumerable.Range(1, 5)
-        .ToArray();
-
-    return forecast;
-})
-.WithName("Hello");
 
 app.Run();

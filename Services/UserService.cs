@@ -14,6 +14,11 @@ public class UserService : IUserService
         _userRepository = userRepository;
     }
 
+    public async Task<User> AddUser(User user)
+    {
+        return await _userRepository.AddUser(user);
+    }
+
     public async Task<IEnumerable<User>> GetAllUsers()
     {
         return await _userRepository.GetAllUsers();

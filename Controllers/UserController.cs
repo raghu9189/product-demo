@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using ProductDemo.Models.Entities;
 using ProductDemo.Services.Interfaces;
 
 namespace ProductDemo.Controllers;
@@ -30,5 +31,13 @@ public class UserController: ControllerBase
             return NotFound();
         }
         return Ok(user);
+    }
+
+    //POST: api/user
+    [HttpPost]
+    public async Task<IActionResult> CreateUser(User user)
+    {
+        var createdUser = await _userService.AddUser(user);
+        return Ok(createdUser);
     }
 }
