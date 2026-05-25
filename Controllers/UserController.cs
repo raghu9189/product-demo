@@ -13,6 +13,7 @@ public class UserController: ControllerBase
     {
         _userService = userService;
     }
+    
     // GET: /api/user
     [HttpGet]
     public async Task<IActionResult> GetUsers()

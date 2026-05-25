@@ -1,11 +1,12 @@
 using ProductDemo.Models;
+using ProductDemo.Models.DTOs;
 using ProductDemo.Models.Entities;
 
 namespace ProductDemo.Services.Interfaces;
 
 public interface IUserService
 {
-    Task<IEnumerable<User>> GetAllUsers();
-    Task<User?> GetUserById(int id);
-    Task<User> AddUser(User user);
+    Task<IEnumerable<UserResponseDto>> GetAllUsers();
+    Task<UserResponseDto?> GetUserById(int id);
+    Task<UserResponseDto> AddUser(User user);
 }
