@@ -1,0 +1,78 @@
+# Build folders
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio / VS Code
+.vs/
+.vscode/
+
+# Rider
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment files
+.env
+
+# ASP.NET Core
+appsettings.Development.json
+
+# Entity Framework
+Migrations/
+
+# NuGet
+*.nupkg
+packages/
+
+# Test Results
+TestResults/
+
+# Coverage Reports
+coverage/
+*.coverage
+*.coveragexml
+
+# Publish Output
+publish/
+
+# Temporary files
+tmp/
+temp/
+
+# Node modules (if frontend added later)
+node_modules/
+
+# Mac files
+.AppleDouble
+.LSOverride
+
+# JetBrains Rider cache
+_ReSharper*/
+*.DotSettings.user
+
+# IIS Express
+iisexpress/
+
+# SQL Server LocalDB
+*.mdf
+*.ldf
+
+# Azure
+.publishsettings
+
+# Docker
+docker-compose.override.yml
+
+# Secrets
+secrets.json
