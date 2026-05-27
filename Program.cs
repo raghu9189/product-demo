@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using ProductDemo.Middleware;
 using ProductDemo.Repositories;
 using ProductDemo.Repositories.Interfaces;
 using ProductDemo.Services;
@@ -45,6 +46,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Add Middlewares here
+app.UseMiddleware<LoggerMiddleware>();
 
 app.MapControllers();
 

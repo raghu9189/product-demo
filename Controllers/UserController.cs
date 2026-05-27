@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using ProductDemo.Models.DTOs;
 using ProductDemo.Models.Entities;
 using ProductDemo.Services.Interfaces;
 
@@ -36,8 +37,12 @@ public class UserController: ControllerBase
 
     //POST: api/user
     [HttpPost]
-    public async Task<IActionResult> CreateUser(User user)
+    public async Task<IActionResult> CreateUser(CreateUserDto user)
     {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
         var createdUser = await _userService.AddUser(user);
         return Ok(createdUser);
     }

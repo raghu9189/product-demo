@@ -1,8 +1,10 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace ProductDemo.Models.DTOs;
 
 public class CreateUserDto
 {
-    public int Id { get; set; }
-
+    [Required]
+    [MinLength(3)]
     public string Name { get; set; }
 }

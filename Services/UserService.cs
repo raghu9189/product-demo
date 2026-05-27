@@ -15,9 +15,13 @@ public class UserService : IUserService
         _userRepository = userRepository;
     }
 
-    public async Task<UserResponseDto> AddUser(User user)
+    public async Task<UserResponseDto> AddUser(CreateUserDto user)
     {   
-        var createdUser = await _userRepository.AddUser(user);
+        var userEntity = new User()
+        {
+            Name = user.Name
+        };
+        var createdUser = await _userRepository.AddUser(userEntity);
         var dto = new UserResponseDto
         {
             Id = createdUser.Id,

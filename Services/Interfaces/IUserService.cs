@@ -8,5 +8,5 @@ public interface IUserService
 {
     Task<IEnumerable<UserResponseDto>> GetAllUsers();
     Task<UserResponseDto?> GetUserById(int id);
-    Task<UserResponseDto> AddUser(User user);
+    Task<UserResponseDto> AddUser(CreateUserDto user);
 }
