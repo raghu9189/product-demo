@@ -9,4 +9,6 @@ public interface IUserService
     Task<IEnumerable<UserResponseDto>> GetAllUsers();
     Task<UserResponseDto?> GetUserById(int id);
     Task<UserResponseDto> AddUser(CreateUserDto user);
+    Task<UserResponseDto?> UpdateUser(int id, UpdateUserDto userDto);
+    Task<bool> DeleteUser(int id);
 }

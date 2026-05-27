@@ -44,11 +44,49 @@ public class UserService : IUserService
     public async Task<UserResponseDto?> GetUserById(int id)
     {
         var user = await _userRepository.GetUserById(id);
+        if (user is null)
+        {
+            return null;
+        }
         var dto = new UserResponseDto
         {
             Id = user.Id,
             Name = user.Name
         };
         return dto;
+    }
+
+    public async Task<UserResponseDto?> UpdateUser(int id, UpdateUserDto userDto)
+    {
+        var user = await _userRepository.GetUserById(id);
+        if (user is null)
+        {
+            return null;
+        }
+
+        if (userDto.Name != null)
+        {
+            user.Name = userDto.Name;
+        }
+
+        await _userRepository.UpdateUser(user);
+
+        return new UserResponseDto
+        {
+            Id = user.Id,
+            Name = user.Name
+        };
+    }
+
+    public async Task<bool> DeleteUser(int id)
+    {
+        var user = await _userRepository.GetUserById(id);
+        if (user is null)
+        {
+            return false;
+        }
+
+        await _userRepository.DeleteUser(user);
+        return true;
     }
 }

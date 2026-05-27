@@ -46,4 +46,32 @@ public class UserController: ControllerBase
         var createdUser = await _userService.AddUser(user);
         return Ok(createdUser);
     }
+
+    // PATCH: api/user/1
+    [HttpPatch("{id}")]
+    public async Task<IActionResult> UpdateUser(int id, UpdateUserDto userDto)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+        var updatedUser = await _userService.UpdateUser(id, userDto);
+        if (updatedUser is null)
+        {
+            return NotFound();
+        }
+        return Ok(updatedUser);
+    }
+
+    // DELETE: api/user/1
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteUser(int id)
+    {
+        var success = await _userService.DeleteUser(id);
+        if (!success)
+        {
+            return NotFound();
+        }
+        return NoContent();
+    }
 }

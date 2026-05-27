@@ -9,4 +9,7 @@ public class Product
     public string Description {get; set;}
     public double Price {get; set;}
 
+    // One Product -> Many Orders
+    public ICollection<Order> Orders { get; set; } = new List<Order>();
+
 }
