@@ -1,3 +1,4 @@
+using System.Text.Json;
 using ProductDemo.Models.DTOs;
 using ProductDemo.Models.Entities;
 using ProductDemo.Repositories.Interfaces;
@@ -51,7 +52,19 @@ public class OrderService : IOrderService
             Id = createdOrder.Id,
             UserId = createdOrder.UserId,
             ProductId = createdOrder.ProductId,
-            Quantity = createdOrder.Quantity
+            Quantity = createdOrder.Quantity,
+            User = new UserResponseDto
+            {
+                Id = user.Id,
+                Name = user.Name
+            },
+            Product = new ProductResponseDto
+            {
+                Id = product.Id,
+                Title = product.Title,
+                Description = product.Description,
+                Price = product.Price
+            }
         };
     }
 
@@ -80,7 +93,19 @@ public class OrderService : IOrderService
             Id = order.Id,
             UserId = order.UserId,
             ProductId = order.ProductId,
-            Quantity = order.Quantity
+            Quantity = order.Quantity,
+            User = order.User != null ? new UserResponseDto
+            {
+                Id = order.User.Id,
+                Name = order.User.Name
+            } : null,
+            Product = order.Product != null ? new ProductResponseDto
+            {
+                Id = order.Product.Id,
+                Title = order.Product.Title,
+                Description = order.Product.Description,
+                Price = order.Product.Price
+            } : null
         };
     }
 
@@ -101,6 +126,7 @@ public class OrderService : IOrderService
                 return null;
             }
             order.UserId = orderDto.UserId.Value;
+            order.User = user;
         }
 
         if (orderDto.ProductId.HasValue)
@@ -112,6 +138,7 @@ public class OrderService : IOrderService
                 return null;
             }
             order.ProductId = orderDto.ProductId.Value;
+            order.Product = product;
         }
 
         if (orderDto.Quantity.HasValue)
@@ -126,7 +153,19 @@ public class OrderService : IOrderService
             Id = order.Id,
             UserId = order.UserId,
             ProductId = order.ProductId,
-            Quantity = order.Quantity
+            Quantity = order.Quantity,
+            User = order.User != null ? new UserResponseDto
+            {
+                Id = order.User.Id,
+                Name = order.User.Name
+            } : null,
+            Product = order.Product != null ? new ProductResponseDto
+            {
+                Id = order.Product.Id,
+                Title = order.Product.Title,
+                Description = order.Product.Description,
+                Price = order.Product.Price
+            } : null
         };
     }
 

@@ -21,12 +21,12 @@ public class UserRepository : IUserRepository
 
     public async Task<IEnumerable<User>> GetAllUsers()
     {
-        return await _context.Users.ToListAsync();
+        return await _context.Users.AsNoTracking().ToListAsync();
     }
 
     public async Task<User?> GetUserById(int id)
     {
-        return await _context.Users.FindAsync(id);
+        return await _context.Users.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
     }
 
     public async Task UpdateUser(User user)

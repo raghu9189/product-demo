@@ -22,12 +22,12 @@ public class OrderRepository : IOrderRepository
 
     public async Task<IEnumerable<Order>> GetAllOrders()
     {
-        return await _context.Orders.ToListAsync();
+        return await _context.Orders.AsNoTracking().ToListAsync();
     }
 
     public async Task<Order?> GetOrderById(int id)
     {
-        return await _context.Orders.FindAsync(id);
+        return await _context.Orders.AsNoTracking().Include(o => o.User).Include(o => o.Product).FirstOrDefaultAsync(x => x.Id == id);
     }
 
     public async Task UpdateOrder(Order order)

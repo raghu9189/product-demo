@@ -22,12 +22,12 @@ public class ProductRepository : IProductRepository
 
     public async Task<IEnumerable<Product>> GetAllProducts()
     {
-        return await _context.Products.ToListAsync();
+        return await _context.Products.AsNoTracking().ToListAsync();
     }
 
     public async Task<Product?> GetProductById(int id)
     {
-        return await _context.Products.FindAsync(id);
+        return await _context.Products.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
     }
 
     public async Task UpdateProduct(Product product)
